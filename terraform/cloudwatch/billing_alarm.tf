@@ -49,7 +49,7 @@ resource "aws_cloudwatch_metric_alarm" "forecast_billing_alarm" {
 
 resource "aws_ce_anomaly_subscription" "billing_anomaly_subscription" {
   name = "billing-anomaly-subscription"
-  frequency = "IMMEDIATE"
+  frequency = "DAILY"
   monitor_arn_list = [aws_ce_anomaly_monitor.billing_anomaly_monitor.arn]
   dynamic "subscriber" {
     for_each = var.alert_emails
