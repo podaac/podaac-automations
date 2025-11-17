@@ -55,7 +55,7 @@ resource "aws_ce_anomaly_subscription" "billing_anomaly_subscription" {
     for_each = var.alert_emails
     content {
       type    = "EMAIL"
-      address = subscribers.value
+      address = subscriber.value
     }
   }
 }
