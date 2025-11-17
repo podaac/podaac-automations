@@ -51,14 +51,13 @@ resource "aws_ce_anomaly_subscription" "billing_anomaly_subscription" {
   name = "billing-anomaly-subscription"
   frequency = "IMMEDIATE"
   monitor_arn_list = [aws_ce_anomaly_monitor.billing_anomaly_monitor.arn]
-  dynamic "subscribers" {
+  dynamic "subscriber" {
     for_each = var.alert_emails
     content {
       type    = "EMAIL"
       address = subscribers.value
     }
   }
-  threshold = 0 # Set to 0 to get all anomalies, or set a $ threshold
 }
 
 resource "aws_ce_anomaly_monitor" "billing_anomaly_monitor" {
