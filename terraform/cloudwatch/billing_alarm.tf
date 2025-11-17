@@ -58,6 +58,13 @@ resource "aws_ce_anomaly_subscription" "billing_anomaly_subscription" {
       address = subscriber.value
     }
   }
+  threshold_expression {
+    dimension {
+      key           = "ANOMALY_TOTAL_IMPACT_ABSOLUTE"
+      match_options = ["GREATER_THAN_OR_EQUAL"]
+      values        = ["500"]
+    }
+  }
 }
 
 resource "aws_ce_anomaly_monitor" "billing_anomaly_monitor" {
